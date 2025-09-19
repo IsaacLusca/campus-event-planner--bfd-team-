@@ -6,8 +6,13 @@ print("4.Marcar Evento como Participado")
 print("5.Gerar Relatório")
 print("6.Sair")
 
+count = 0
+
 def adicionarEvento(listaEvento, nome, data, local, categoria):
+    global count
+    count += 1
     novoEvento = {
+        "id": count,
         "nome": nome,
         "data": data,
         "local": local,
