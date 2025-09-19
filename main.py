@@ -42,6 +42,11 @@ def adicionarEvento(listaEvento, nome, data, local, categoria):
     listaEvento.append(novoEvento)
     print("Evento adicionado com sucesso!")
 
+# listaEventos = [
+#     {"id": 1, "nome": "Hackathon", "data": "2025-05-20", "local": "Hall", "categoria": "Social", "participado": False},
+#     {"id": 2, "nome": "Palestra Python", "data": "2025-05-21", "local": "Sala 101", "categoria": "Acadêmico", "participado": True}
+# ]
+
 # função para listar os eventos
 def listarEventos(listaEvento):
     if not listaEvento:
@@ -56,25 +61,19 @@ def listarEventos(listaEvento):
         print(f"ID: {evento['id']}, Nome: {evento['nome']}, Data: {evento['data']}, "
               f"Local: {evento['local']}, Categoria: {evento['categoria']}, "
               f"Participado: {status}")
-
-# função para procurar evento por nome
-def procurarEventoPorNome(listaEvento, nome):
-    for evento in listaEvento:
-        if evento["nome"].lower() == nome.lower():
-            return evento
         
-        print("Evento não encontrado.")
-        return
-    
-# lista de teste
-listaEventos = [
-    {"id": 1, "nome": "Hackathon", "data": "2025-05-20", "local": "Hall", "categoria": "Social", "participado": False},
-    {"id": 2, "nome": "Palestra Python", "data": "2025-05-21", "local": "Sala 101", "categoria": "Acadêmico", "participado": True}
-]
-
 # listarEventos(listaEventos)
 
-# resultado = procurarEventoPorNome(listaEventos, "Hackathon")
-# print(resultado)  
-# resultado = procurarEventoPorNome(listaEventos, "Eventox")
-# print(resultado) 
+# função para procurar evento por nome ou categoria
+def procurarEventoPorNome(listaEvento, filtro):
+    for evento in listaEvento:
+        if evento["nome"].lower() == filtro.lower() or evento["categoria"].lower() == filtro.lower():
+            return evento
+        
+    print("Evento não encontrado.")
+    return
+
+# print(procurarEventoPorNome(listaEventos, "Hackathon"))  
+# print(procurarEventoPorNome(listaEventos, "Acadêmico"))  
+# print(procurarEventoPorNome(listaEventos, "Eventox")) 
+
