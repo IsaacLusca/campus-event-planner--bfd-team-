@@ -8,7 +8,6 @@ print("4.Marcar Evento como Participado")
 print("5.Gerar Relatório")
 print("6.Sair")
 
-count = 0
 
 # função para validar data
 def validarData(data_str):
@@ -18,6 +17,8 @@ def validarData(data_str):
     except ValueError:
         return False
     
+count = 0
+
 # função para adicionar evento
 def adicionarEvento(listaEvento, nome, data, local, categoria):
     global count
@@ -51,9 +52,17 @@ def listarEventos(listaEvento):
             status = "Sim"
         else:
             status = "Não"
-            
+
         print(f"ID: {evento['id']}, Nome: {evento['nome']}, Data: {evento['data']}, "
               f"Local: {evento['local']}, Categoria: {evento['categoria']}, "
               f"Participado: {status}")
 
-
+# função para procurar evento por nome
+def procurarEventoPorNome(listaEvento, nome):
+    for evento in listaEvento:
+        if evento["nome"].lower() == nome.lower():
+            return evento
+        
+        print("Evento não encontrado.")
+        return
+    
