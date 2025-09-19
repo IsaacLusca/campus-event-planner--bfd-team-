@@ -67,9 +67,14 @@ def procurarEventoPorNome(listaEvento, nome):
         return
     
 # lista de teste
-# listaEventos = [
-#     {"id": 1, "nome": "Hackathon", "data": "2025-05-20", "local": "Hall", "categoria": "Social", "participado": False},
-#     {"id": 2, "nome": "Palestra Python", "data": "2025-05-21", "local": "Sala 101", "categoria": "Acadêmico", "participado": True}
-# ]
+listaEventos = [
+    {"id": 1, "nome": "Hackathon", "data": "2025-05-20", "local": "Hall", "categoria": "Social", "participado": False},
+    {"id": 2, "nome": "Palestra Python", "data": "2025-05-21", "local": "Sala 101", "categoria": "Acadêmico", "participado": True}
+]
 
 # listarEventos(listaEventos)
+
+# resultado = procurarEventoPorNome(listaEventos, "Hackathon")
+# print(resultado)  
+# resultado = procurarEventoPorNome(listaEventos, "Eventox")
+# print(resultado) 
