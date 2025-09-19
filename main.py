@@ -1,14 +1,5 @@
 from datetime import datetime
 
-print("===Planejador de Eventos do Campus===")
-print("1.Adicionar Evento")
-print("2.Ver Todos os Eventos")
-print("3.Filtrar por Categoria")
-print("4.Marcar Evento como Participado")
-print("5.Gerar Relatório")
-print("6.Sair")
-
-
 # função para validar data
 def validarData(data_str):
     try:
@@ -77,3 +68,14 @@ def procurarEventoPorNome(listaEvento, filtro):
 # print(procurarEventoPorNome(listaEventos, "Acadêmico"))  
 # print(procurarEventoPorNome(listaEventos, "Eventox")) 
 
+# função para deletar evento
+def deletarEvento(listaEvento, id):
+    for i, evento in enumerate(listaEvento):
+        if evento["id"] == id:
+            listaEvento.pop(i)
+            print("Evento deletado com sucesso!")
+            return
+    print("Evento não encontrado.")
+
+# deletarEvento(listaEventos, 1)
+# listarEventos(listaEventos)
