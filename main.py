@@ -1,3 +1,5 @@
+from datetime import datetime
+
 print("===Planejador de Eventos do Campus===")
 print("1.Adicionar Evento")
 print("2.Ver Todos os Eventos")
@@ -8,9 +10,20 @@ print("6.Sair")
 
 count = 0
 
+def validarData(data_str):
+    try:
+        datetime.strptime(data_str, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
+
 def adicionarEvento(listaEvento, nome, data, local, categoria):
     global count
     count += 1
+
+    if not validarData(data):
+        print("Erro: Data inválida. Use o formato AAAA/MM/DD.")
+        return
 
     if not nome or not data or not local or not categoria:
         print("Erro: Todos os campos são obrigatórios.")
