@@ -10,13 +10,15 @@ print("6.Sair")
 
 count = 0
 
+# função para validar data
 def validarData(data_str):
     try:
         datetime.strptime(data_str, "%Y-%m-%d")
         return True
     except ValueError:
         return False
-
+    
+# função para adicionar evento
 def adicionarEvento(listaEvento, nome, data, local, categoria):
     global count
     count += 1
@@ -38,3 +40,20 @@ def adicionarEvento(listaEvento, nome, data, local, categoria):
     }
     listaEvento.append(novoEvento)
     print("Evento adicionado com sucesso!")
+
+# função para listar os eventos
+def listarEventos(listaEvento):
+    if not listaEvento:
+        print("Nenhum evento cadastrado.")
+        return
+    for evento in listaEvento:
+        if evento["participado"] == True:
+            status = "Sim"
+        else:
+            status = "Não"
+            
+        print(f"ID: {evento['id']}, Nome: {evento['nome']}, Data: {evento['data']}, "
+              f"Local: {evento['local']}, Categoria: {evento['categoria']}, "
+              f"Participado: {status}")
+
+
