@@ -6,4 +6,13 @@ print("4.Marcar Evento como Participado")
 print("5.Gerar Relatório")
 print("6.Sair")
 
-
+def adicionarEvento(listaEvento, nome, data, local, categoria):
+    novoEvento = {
+        "nome": nome,
+        "data": data,
+        "local": local,
+        "categoria": categoria,
+        "participado": False    
+    }
+    listaEvento.append(novoEvento)
+    print("Evento adicionado com sucesso!")
