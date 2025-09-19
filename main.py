@@ -11,6 +11,10 @@ count = 0
 def adicionarEvento(listaEvento, nome, data, local, categoria):
     global count
     count += 1
+
+    if not nome or not data or not local or not categoria:
+        print("Erro: Todos os campos são obrigatórios.")
+        return
     novoEvento = {
         "id": count,
         "nome": nome,
