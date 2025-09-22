@@ -12,3 +12,10 @@ O intuito desse repositório é construir um planejador de eventos do IFConecta 
 - Marcar eventos como participado.
 - Gerar um relatório simples
 
+
+## Estudantes
+
+|          Nome Completo          | 
+|---------------------------------|
+| Isaac Lucas Souza Bezerra       |
+| Carlos Eduardo Neves do Santos  | 
