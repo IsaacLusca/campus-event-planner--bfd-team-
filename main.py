@@ -13,15 +13,16 @@ count = 0
 # função para adicionar evento
 def adicionarEvento(listaEvento, nome, data, local, categoria):
     global count
-    count += 1
 
     if not validarData(data):
-        print("Erro: Data inválida. Use o formato AAAA/MM/DD.")
+        print("Erro: Data inválida. Use o formato AAAA-MM-DD.")
         return
 
     if not nome or not data or not local or not categoria:
         print("Erro: Todos os campos são obrigatórios.")
         return
+    
+    count += 1
     novoEvento = {
         "id": count,
         "nome": nome,
@@ -57,12 +58,16 @@ def listarEventos(listaEvento):
 
 # função para procurar evento por nome ou categoria
 def procurarEventoPorNome(listaEvento, filtro):
+    resultados = []
     for evento in listaEvento:
-        if evento["nome"].lower() == filtro.lower() or evento["categoria"].lower() == filtro.lower():
-            return evento
+        if filtro.lower() in evento["nome"].lower() or filtro.lower() in evento["categoria"].lower():
+            resultados.append(evento)
+    
+    if not resultados:
+        print("Nenhum evento encontrado.")
+        return [] # Retorna lista vazia se nada for encontrado
         
-    print("Evento não encontrado.")
-    return
+    return resultados 
 
 # print(procurarEventoPorNome(listaEventos, "Hackathon"))  
 # print(procurarEventoPorNome(listaEventos, "Acadêmico"))  
@@ -70,12 +75,13 @@ def procurarEventoPorNome(listaEvento, filtro):
 
 # função para deletar evento
 def deletarEvento(listaEvento, id):
-    for i, evento in enumerate(listaEvento):
-        if evento["id"] == id:
-            listaEvento.pop(i)
-            print("Evento deletado com sucesso!")
-            return
-    print("Evento não encontrado.")
+    original_size = len(listaEvento)
+    listaEvento[:] = [evento for evento in listaEvento if evento["id"] != id]
+    
+    if len(listaEvento) < original_size:
+        print("Evento deletado com sucesso!")
+    else:
+        print("Evento não encontrado.")
 
 # deletarEvento(listaEventos, 1)
 # listarEventos(listaEventos)
