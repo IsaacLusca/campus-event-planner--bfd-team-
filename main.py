@@ -119,3 +119,11 @@ def displayMenu():
     print("7. Gerar Relatório")
     print("8. Sair")
     print("=========================================\n")
+
+#função para escolha do usuário
+def getEscolhaDoUsuario():
+    try:
+        return int(input("Escolha uma opção (1-8): "))
+    except ValueError:
+        return 0
+    
