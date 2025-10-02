@@ -45,6 +45,9 @@ def listarEventos(listaEvento):
     if not listaEvento:
         print("Nenhum evento cadastrado.")
         return
+    print("\n======================================")
+    print("======== Lista de Eventos: ============")
+    print("======================================")
     for evento in listaEvento:
         if evento["participado"] == True:
             status = "Sim"
@@ -54,7 +57,8 @@ def listarEventos(listaEvento):
         print(f"ID: {evento['id']}, Nome: {evento['nome']}, Data: {evento['data']}, "
               f"Local: {evento['local']}, Categoria: {evento['categoria']}, "
               f"Participado: {status}")
-        
+        print("--------------------------------------------------------------")
+    print("=======================================================================\n")
 # listarEventos(listaEventos)
 
 # função para procurar evento por nome ou categoria
@@ -109,7 +113,7 @@ def deletarEvento(listaEvento, id):
 def displayMenu():
     print("\n=========================================")
     print("==== Planejador de Eventos do Campus ====")
-    print("=========================================\n")
+    print("=========================================")
     print("1. Adicionar Evento")
     print("2. Ver Todos os Eventos")
     print("3. Filtrar por Categoria")
@@ -118,7 +122,7 @@ def displayMenu():
     print("6. Deletar Evento por ID")
     print("7. Gerar Relatório")
     print("8. Sair")
-    print("=========================================\n")
+    print("=========================================")
 
 #função para escolha do usuário
 def getEscolhaDoUsuario():
@@ -134,10 +138,48 @@ def filtrarEventosPorCategoria(listaEventos, categoria):
         print("\n==============================================================")
         print("Nenhum evento encontrado para a categoria especificada.")
     else:
-        print("==============================================================\n")
+        print("\n==============================================================")
+        print(f"Eventos na categoria '{categoria}':")
+        print("================================================================")
+
         for evento in encontrados:
             status = "Sim" if evento["participado"] else "Não"
             print(f"ID: {evento['id']}, Nome: {evento['nome']}, Data: {evento['data']}, "
                   f"Local: {evento['local']}, Categoria: {evento['categoria']}, "
                   f"Participado: {status}")
-            print("======================================\n")
+            print("--------------------------------------------------------------")
+        print("======================================\n")
+
+
+# Chamar a main
+if __name__ == "__main__":
+    eventos = []
+    while True:
+        displayMenu()
+        escolha = getEscolhaDoUsuario()
+        print("=========================================\n")
+
+        match escolha:
+            case 1:
+                nome = input("Nome do Evento: ")
+                data = input("Data (AAAA-MM-DD): ")
+                local = input("Local: ")
+                categoria = input("Categoria: ")
+                adicionarEvento(eventos, nome, data, local, categoria)  
+            
+            case 2:
+                listarEventos(eventos)
+
+            case 3:
+                categoria = input("Digite a categoria para filtrar: ")
+                filtrarEventosPorCategoria(eventos, categoria)
+
+            case 5:
+                nomeOuCategoria = input("Digite o nome ou categoria para buscar: ")
+                procurarEventoPorNome(eventos, nomeOuCategoria)
+
+            case 8:
+                print("\n===========================")
+                print("Saindo do sistema...")
+                print("===========================\n")
+                break
