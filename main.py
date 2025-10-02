@@ -13,15 +13,17 @@ count = 0
 # função para adicionar evento
 def adicionarEvento(listaEvento, nome, data, local, categoria):
     global count
-    count += 1
-
-    if not validarData(data):
-        print("Erro: Data inválida. Use o formato AAAA/MM/DD.")
-        return
 
     if not nome or not data or not local or not categoria:
         print("Erro: Todos os campos são obrigatórios.")
         return
+    
+    if not validarData(data):
+        print("Erro: Data inválida. Use o formato AAAA-MM-DD.")
+        return
+    
+    count += 1
+    # novo_id = len(listaEvento) + 1
     novoEvento = {
         "id": count,
         "nome": nome,
@@ -57,12 +59,16 @@ def listarEventos(listaEvento):
 
 # função para procurar evento por nome ou categoria
 def procurarEventoPorNome(listaEvento, filtro):
+    resultados = []
     for evento in listaEvento:
-        if evento["nome"].lower() == filtro.lower() or evento["categoria"].lower() == filtro.lower():
-            return evento
+        if filtro.lower() in evento["nome"].lower() or filtro.lower() in evento["categoria"].lower():
+            resultados.append(evento)
+    
+    if not resultados:
+        print("Nenhum evento encontrado.")
+        return [] # Retorna lista vazia se nada for encontrado
         
-    print("Evento não encontrado.")
-    return
+    return resultados 
 
 # print(procurarEventoPorNome(listaEventos, "Hackathon"))  
 # print(procurarEventoPorNome(listaEventos, "Acadêmico"))  
@@ -76,6 +82,21 @@ def deletarEvento(listaEvento, id):
             print("Evento deletado com sucesso!")
             return
     print("Evento não encontrado.")
-
+    
 # deletarEvento(listaEventos, 1)
 # listarEventos(listaEventos)
+
+
+# # Teste
+# eventos = []
+# adicionarEvento(eventos, "Evento 1", "2024-12-01", "Local A", "Categoria X")
+# adicionarEvento(eventos, "Evento 2", "2024-12-02", "Local B", "Categoria Y")
+
+# # Deletar um evento
+# deletarEvento(eventos, 1)
+
+# # Adicionar novo - ID deve ser 3, não 2
+# adicionarEvento(eventos, "Evento 3", "2024-12-03", "Local C", "Categoria Z")
+
+# listarEventos(eventos)
+# # Deve mostrar: ID 2 e ID 3 (não ID 1 e 2)
