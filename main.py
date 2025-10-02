@@ -23,6 +23,7 @@ def adicionarEvento(listaEvento, nome, data, local, categoria):
         return
     
     count += 1
+    # novo_id = len(listaEvento) + 1
     novoEvento = {
         "id": count,
         "nome": nome,
@@ -75,13 +76,27 @@ def procurarEventoPorNome(listaEvento, filtro):
 
 # função para deletar evento
 def deletarEvento(listaEvento, id):
-    original_size = len(listaEvento)
-    listaEvento[:] = [evento for evento in listaEvento if evento["id"] != id]
+    for i, evento in enumerate(listaEvento):
+        if evento["id"] == id:
+            listaEvento.pop(i)
+            print("Evento deletado com sucesso!")
+            return
+    print("Evento não encontrado.")
     
-    if len(listaEvento) < original_size:
-        print("Evento deletado com sucesso!")
-    else:
-        print("Evento não encontrado.")
-
 # deletarEvento(listaEventos, 1)
 # listarEventos(listaEventos)
+
+
+# # Teste
+# eventos = []
+# adicionarEvento(eventos, "Evento 1", "2024-12-01", "Local A", "Categoria X")
+# adicionarEvento(eventos, "Evento 2", "2024-12-02", "Local B", "Categoria Y")
+
+# # Deletar um evento
+# deletarEvento(eventos, 1)
+
+# # Adicionar novo - ID deve ser 3, não 2
+# adicionarEvento(eventos, "Evento 3", "2024-12-03", "Local C", "Categoria Z")
+
+# listarEventos(eventos)
+# # Deve mostrar: ID 2 e ID 3 (não ID 1 e 2)
