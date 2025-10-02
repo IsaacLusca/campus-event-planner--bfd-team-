@@ -177,6 +177,15 @@ if __name__ == "__main__":
             case 5:
                 nomeOuCategoria = input("Digite o nome ou categoria para buscar: ")
                 procurarEventoPorNome(eventos, nomeOuCategoria)
+            
+            case 6:
+                try:
+                    idEvento = int(input("Digite o ID do evento a ser deletado: "))
+                    deletarEvento(eventos, idEvento)
+                except ValueError:
+                    print("\n===========================")
+                    print("ID inválido.")
+                    print("===========================\n")
 
             case 8:
                 print("\n===========================")
