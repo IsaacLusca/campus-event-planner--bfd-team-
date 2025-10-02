@@ -14,12 +14,12 @@ count = 0
 def adicionarEvento(listaEvento, nome, data, local, categoria):
     global count
 
-    if not validarData(data):
-        print("Erro: Data inválida. Use o formato AAAA-MM-DD.")
-        return
-
     if not nome or not data or not local or not categoria:
         print("Erro: Todos os campos são obrigatórios.")
+        return
+    
+    if not validarData(data):
+        print("Erro: Data inválida. Use o formato AAAA-MM-DD.")
         return
     
     count += 1
