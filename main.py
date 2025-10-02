@@ -127,3 +127,17 @@ def getEscolhaDoUsuario():
     except ValueError:
         return 0
     
+# função para filtrar eventos por categoria
+def filtrarEventosPorCategoria(listaEventos, categoria):
+    encontrados = [evento for evento in listaEventos if evento["categoria"].lower() == categoria.lower()]
+    if not encontrados:
+        print("\n==============================================================")
+        print("Nenhum evento encontrado para a categoria especificada.")
+    else:
+        print("==============================================================\n")
+        for evento in encontrados:
+            status = "Sim" if evento["participado"] else "Não"
+            print(f"ID: {evento['id']}, Nome: {evento['nome']}, Data: {evento['data']}, "
+                  f"Local: {evento['local']}, Categoria: {evento['categoria']}, "
+                  f"Participado: {status}")
+            print("======================================\n")
