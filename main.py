@@ -100,3 +100,22 @@ def deletarEvento(listaEvento, id):
 
 # listarEventos(eventos)
 # # Deve mostrar: ID 2 e ID 3 (não ID 1 e 2)
+
+# ==============================
+# ======== ESTUDANTE B =========
+# ==============================
+
+# função displayMenu
+def displayMenu():
+    print("\n=========================================")
+    print("==== Planejador de Eventos do Campus ====")
+    print("=========================================\n")
+    print("1. Adicionar Evento")
+    print("2. Ver Todos os Eventos")
+    print("3. Filtrar por Categoria")
+    print("4. Marcar Evento como Participado")
+    print("5. Procurar por Nome/Categoria")
+    print("6. Deletar Evento por ID")
+    print("7. Gerar Relatório")
+    print("8. Sair")
+    print("=========================================\n")
