@@ -15,11 +15,15 @@ def adicionarEvento(listaEvento, nome, data, local, categoria):
     global count
 
     if not nome or not data or not local or not categoria:
+        print("\n--------------------------------")
         print("Erro: Todos os campos são obrigatórios.")
+        print("--------------------------------\n")
         return
     
     if not validarData(data):
+        print("\n--------------------------------")
         print("Erro: Data inválida. Use o formato AAAA-MM-DD.")
+        print("--------------------------------\n")
         return
     
     count += 1
@@ -33,7 +37,9 @@ def adicionarEvento(listaEvento, nome, data, local, categoria):
         "participado": False    
     }
     listaEvento.append(novoEvento)
+    print("\n--------------------------------")
     print("Evento adicionado com sucesso!")
+    print("--------------------------------\n")
 
 # listaEventos = [
 #     {"id": 1, "nome": "Hackathon", "data": "2025-05-20", "local": "Hall", "categoria": "Social", "participado": False},
@@ -69,7 +75,9 @@ def procurarEventoPorNome(listaEvento, filtro):
             resultados.append(evento)
     
     if not resultados:
+        print("\n--------------------------------")
         print("Nenhum evento encontrado.")
+        print("--------------------------------\n")
         return [] # Retorna lista vazia se nada for encontrado
         
     return resultados 
@@ -83,7 +91,9 @@ def deletarEvento(listaEvento, id):
     for i, evento in enumerate(listaEvento):
         if evento["id"] == id:
             listaEvento.pop(i)
+            print("\n--------------------------------")
             print("Evento deletado com sucesso!")
+            print("--------------------------------\n")
             return
     print("Evento não encontrado.")
     
@@ -150,6 +160,17 @@ def filtrarEventosPorCategoria(listaEventos, categoria):
             print("--------------------------------------------------------------")
         print("======================================\n")
 
+def marcarEventoAtendido(listaEventos, id):
+    for evento in listaEventos:
+        if evento["id"] == id:
+            evento["participado"] = True
+            print("\n=========================================")
+            print("Evento marcado como participado.")
+            print("=========================================\n")
+            return
+    print("\n-----------------------------------------")
+    print("Evento não encontrado.")
+    print("-----------------------------------------\n")
 
 # Chamar a main
 if __name__ == "__main__":
@@ -178,6 +199,15 @@ if __name__ == "__main__":
                 nomeOuCategoria = input("Digite o nome ou categoria para buscar: ")
                 procurarEventoPorNome(eventos, nomeOuCategoria)
             
+            case 4:
+                try:
+                    idEvento = int(input("Digite o ID do evento: "))
+                    marcarEventoAtendido(eventos, idEvento)
+                except ValueError:
+                    print("\n===========================")
+                    print("ID inválido.")
+                    print("===========================\n")
+
             case 6:
                 try:
                     idEvento = int(input("Digite o ID do evento a ser deletado: "))
@@ -192,3 +222,8 @@ if __name__ == "__main__":
                 print("Saindo do sistema...")
                 print("===========================\n")
                 break
+
+            case _:
+                print("\n===========================")
+                print("Opção inválida.")
+                print("===========================\n")
