@@ -172,6 +172,26 @@ def marcarEventoAtendido(listaEventos, id):
     print("Evento não encontrado.")
     print("-----------------------------------------\n")
 
+def gerarRelatorio(listaEventos):
+    total = len(listaEventos)
+    print(f"Total de eventos: {total}")
+
+    # Contagem por categoria
+    categorias = {}
+    for evento in listaEventos:
+        cat = evento["categoria"]
+        categorias[cat] = categorias.get(cat, 0) + 1
+    print(f"Eventos por categoria: {categorias}")
+
+    # Eventos participados
+    participados = sum(1 for evento in listaEventos if evento["participado"])
+    if total > 0:
+        percentual = (participados / total) * 100
+    else:
+        percentual = 0
+    print(f"Participados: {percentual:.0f}% ({participados}/{total})")
+    print("=========================================\n")
+
 # Chamar a main
 if __name__ == "__main__":
     eventos = []
@@ -195,10 +215,6 @@ if __name__ == "__main__":
                 categoria = input("Digite a categoria para filtrar: ")
                 filtrarEventosPorCategoria(eventos, categoria)
 
-            case 5:
-                nomeOuCategoria = input("Digite o nome ou categoria para buscar: ")
-                procurarEventoPorNome(eventos, nomeOuCategoria)
-            
             case 4:
                 try:
                     idEvento = int(input("Digite o ID do evento: "))
@@ -208,6 +224,10 @@ if __name__ == "__main__":
                     print("ID inválido.")
                     print("===========================\n")
 
+            case 5:
+                nomeOuCategoria = input("Digite o nome ou categoria para buscar: ")
+                procurarEventoPorNome(eventos, nomeOuCategoria)
+
             case 6:
                 try:
                     idEvento = int(input("Digite o ID do evento a ser deletado: "))
@@ -216,6 +236,9 @@ if __name__ == "__main__":
                     print("\n===========================")
                     print("ID inválido.")
                     print("===========================\n")
+
+            case 7:
+                gerarRelatorio(eventos)
 
             case 8:
                 print("\n===========================")
