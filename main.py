@@ -79,7 +79,18 @@ def procurarEventoPorNome(listaEvento, filtro):
         print("Nenhum evento encontrado.")
         print("--------------------------------\n")
         return [] # Retorna lista vazia se nada for encontrado
-        
+
+    print("\n======================================")
+    print("===========Eventos encontrados==========")
+    print("======================================")
+    
+    for evento in resultados:
+        status = "Sim" if evento["participado"] else "Não"
+        print(f"ID: {evento['id']}, Nome: {evento['nome']}, Data: {evento['data']}, "
+              f"Local: {evento['local']}, Categoria: {evento['categoria']}, "
+              f"Participado: {status}")
+        print("--------------------------------------------------------------")
+
     return resultados 
 
 # print(procurarEventoPorNome(listaEventos, "Hackathon"))  
